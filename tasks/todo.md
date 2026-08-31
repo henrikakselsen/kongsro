@@ -154,32 +154,35 @@
 
 ---
 
-## Task 7: Icons, README, optional pack
+## Task 7: Icons, privacy, store listing, pack
 
-**Description:** Minimal icons; Norwegian/English README with Load unpacked steps; optional `npm run pack` zip for GitHub Releases. Note future repo `henrikakselsen/konge-filter`.
+**Description:** Minimal icons (incl. 128); `privacy.md`; `docs/store-listing.md`; `npm run pack` zip for Web Store upload. Do **not** publish without Ask first.
 
 **Acceptance criteria:**
 - [ ] Toolbar icon visible
-- [ ] README install path works for a cold clone
-- [ ] Pack script (if present) zips `extension/`
+- [ ] Privacy + store listing drafts ready to paste
+- [ ] `npm run pack` produces uploadable zip of `extension/`
 
 **Verification:**
-- [ ] Manual: follow README on clean profile
+- [ ] Manual: Load unpacked still OK
 - [ ] `npm test`
+- [ ] Zip opens / contains manifest
 
 **Dependencies:** Tasks 1–5
 
 **Files likely touched:**
 - `extension/icons/*`
-- `README.md`
+- `privacy.md`
+- `docs/store-listing.md`
 - `package.json`
 
 **Estimated scope:** Medium
 
 ---
 
-## Checkpoint: Release-ready
+## Checkpoint: Store-ready (not published)
 
 - [ ] Manual QA on all six homepages
-- [ ] README accurate
+- [ ] Pack zip + privacy + listing ready
 - [ ] SPEC success criteria 1–8 addressed or explicitly deferred with reason
+- [ ] Explicit user go before Web Store submit
