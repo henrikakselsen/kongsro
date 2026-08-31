@@ -33,6 +33,7 @@
     /slottet/,
     /slottsplass/,
     /slottskapell/,
+    /kapell/,
     /prins/,
     /sverre/,
     /kondolanse/,

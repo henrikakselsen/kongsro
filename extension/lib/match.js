@@ -33,6 +33,7 @@ export const RULES = [
   /slottet/,
   /slottsplass/,
   /slottskapell/,
+  /kapell/,
   /prins/,
   /sverre/,
   /kondolanse/,
