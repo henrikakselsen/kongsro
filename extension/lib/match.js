@@ -1,11 +1,9 @@
 /**
- * Aggressive keyword matching for royal death-wave / overkill coverage.
+ * Pure match rules — used by tests (ESM) and copied into content bundle.
  * Prefer false positives over false negatives.
- * Use stems so "kongens", "kongefamilien", "gravferd" etc. match.
  */
 
-const RULES = [
-  // Death / mourning
+export const RULES = [
   /kongen\s+er\s+død/,
   /døde?.*kong/,
   /kong.*døde?/,
@@ -20,7 +18,6 @@ const RULES = [
   /dødsfall/,
   /sorg/,
   /farvel/,
-  // Household / succession (aggressive stems)
   /kong\s*harald/,
   /kongen/,
   /kongehus/,
@@ -46,5 +43,3 @@ export function shouldHide(text) {
   const normalized = text.toLowerCase().normalize("NFC");
   return RULES.some((rule) => rule.test(normalized));
 }
-
-export { RULES };

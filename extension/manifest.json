@@ -51,10 +51,9 @@
         "*://nettavisen.no/*",
         "*://*.nettavisen.no/*"
       ],
-      "js": ["content/main.js"],
+      "js": ["content/kongsro.js"],
       "css": ["content/hide.css"],
-      "run_at": "document_idle",
-      "type": "module"
+      "run_at": "document_idle"
     }
   ]
 }

@@ -1,7 +1,28 @@
-import { DEFAULT_SETTINGS, loadSettings } from "../lib/settings.js";
+const DEFAULT_SETTINGS = {
+  enabled: true,
+  sites: {
+    "vg.no": true,
+    "dagbladet.no": true,
+    "aftenposten.no": true,
+    "nrk.no": true,
+    "tv2.no": true,
+    "nettavisen.no": true,
+  },
+};
 
 const enabledEl = document.getElementById("enabled");
 const siteInputs = Array.from(document.querySelectorAll("input[data-site]"));
+
+function loadSettings() {
+  return new Promise((resolve) => {
+    chrome.storage.sync.get(DEFAULT_SETTINGS, (data) => {
+      resolve({
+        enabled: data.enabled !== false,
+        sites: { ...DEFAULT_SETTINGS.sites, ...(data.sites || {}) },
+      });
+    });
+  });
+}
 
 async function refresh() {
   const settings = await loadSettings();
