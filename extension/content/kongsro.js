@@ -48,18 +48,35 @@
     },
   };
   const SITE_HOSTS = Object.keys(DEFAULT_SETTINGS.sites);
-  const BUNDLE_SELECTOR = "section.bundle, .bundle, [class*='bundle'], [class*='_bundle_']";
+  // Whole blocks to evaluate/hide (VG bundles, Dagbladet stripes/condolences, etc.)
+  const BLOCK_SELECTOR = [
+    "section.bundle",
+    ".bundle",
+    "[class*='bundle']",
+    "[class*='_bundle_']",
+    ".column.stripe",
+    "[class*='stripe']",
+    "article.preview",
+    "article.column.preview",
+    "[class*='kingCondolences']",
+    "[class*='Condolence']",
+    "[class*='condolence']",
+  ].join(", ");
   const CARD_SELECTORS = [
     "section.bundle",
     ".bundle",
     "[class*='bundle']",
     "[class*='_bundle_']",
+    ".column.stripe",
+    "[class*='stripe']",
+    "article.preview",
     "article",
     "[data-article-id]",
     "[class*='teaser']",
     "[class*='Teaser']",
     "[class*='story']",
     "[class*='card']",
+    "[class*='preview']",
     "li",
   ];
 
@@ -122,11 +139,12 @@
   function scanAndHide() {
     const seen = new Set();
 
-    document.querySelectorAll(BUNDLE_SELECTOR).forEach((bundle) => {
-      const text = (bundle.innerText || bundle.textContent || "").slice(0, 6000);
+    document.querySelectorAll(BLOCK_SELECTOR).forEach((block) => {
+      if (block.closest(`.${HIDDEN}`)) return;
+      const text = (block.innerText || block.textContent || "").slice(0, 6000);
       if (!shouldHide(text)) return;
-      seen.add(bundle);
-      hideElement(bundle);
+      seen.add(block);
+      hideElement(block);
     });
 
     const nodes = document.querySelectorAll(
