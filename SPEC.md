@@ -137,9 +137,13 @@ Re-run on DOM changes (infinite scroll, live updates). Use a single observer per
 7. Prefer-over-hide is documented and reflected in tests (at least one “borderline royal” string is hidden).
 8. Optional: `npm run pack` produces a zip suitable to attach on a GitHub Release.
 
+## Decisions (locked)
+
+1. **Name / repo:** `konge-filter` → `https://github.com/henrikakselsen/konge-filter`
+2. **Rules:** Always active while the extension is enabled; turn the extension off to see coverage.
+3. **Icon:** Minimal monochrome (or simple mark) for v1.
+4. **Hosting:** Personal GitHub (`henrikakselsen`), not Frontkom / Web Store.
+
 ## Open Questions
 
-1. Extension / repo **name** (e.g. `konge-filter`, something more neutral)?
-2. Should v1 ship with rules **always active**, or a “only when mourning wave detected” master switch (still aggressive within wave)? Default assumption: **always-on rules** while extension is enabled — user turns extension off when they want coverage.
-3. Icon / visual identity — minimal monochrome OK for v1?
-4. GitHub under **personal** (`henrikakselsen`) or another org?
+None for v1 scope.
