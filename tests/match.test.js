@@ -10,6 +10,14 @@ describe("shouldHide", () => {
     expect(shouldHide("Landesorg etter kongens bortgang")).toBe(true);
   });
 
+  it("hides VG-style wave headlines (stems, not only exact words)", () => {
+    expect(shouldHide("Kongens gravferd: En rekke cupkamper må flyttes")).toBe(true);
+    expect(shouldHide("Kongefamilien la ned blomster på Slottsplassen")).toBe(true);
+    expect(shouldHide("6,4 millioner kroner for pynt ved kongelig dødsfall")).toBe(true);
+    expect(shouldHide("Slik kan du ta farvel med kong Harald")).toBe(true);
+    expect(shouldHide("Dronning Sonjas hilsen til ektemannen")).toBe(true);
+  });
+
   it("hides borderline royal overkill (aggressive mode)", () => {
     expect(shouldHide("Kongen åpnet Stortinget")).toBe(true);
     expect(shouldHide("Nytt fra kongehuset")).toBe(true);

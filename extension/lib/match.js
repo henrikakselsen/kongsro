@@ -1,32 +1,40 @@
 /**
  * Aggressive keyword matching for royal death-wave / overkill coverage.
  * Prefer false positives over false negatives.
+ * Use stems so "kongens", "kongefamilien", "gravferd" etc. match.
  */
 
 const RULES = [
   // Death / mourning
   /kongen\s+er\s+død/,
-  /\bdøde?\b.*\bkong/,
-  /\bkong.*\bdøde?\b/,
-  /\bbisett/,
-  /\bbegrav/,
-  /\bminneseremoni\b/,
-  /\blandesorg\b/,
-  /\bbortgang\b/,
-  /\bminneord\b/,
-  /\bhyllest\b/,
-  // Household / succession (aggressive)
-  /\bkong harald\b/,
-  /\bkongen\b/,
-  /\bkongehuset\b/,
+  /døde?.*kong/,
+  /kong.*døde?/,
+  /bisett/,
+  /begrav/,
+  /gravferd/,
+  /minneseremoni/,
+  /landesorg/,
+  /bortgang/,
+  /minneord/,
+  /hyllest/,
+  /dødsfall/,
+  /sorg/,
+  /farvel/,
+  // Household / succession (aggressive stems)
+  /kong\s*harald/,
+  /kongen/,
+  /kongehus/,
+  /kongefam/,
+  /kongelig/,
   /\bkonge\b/,
-  /\bdronning sonja\b/,
-  /\bkronprins\b/,
-  /\bhaakon\b/,
-  /\bmette-?marit\b/,
-  /\btronen\b/,
-  /\bny konge\b/,
-  /\bslottet\b/,
+  /dronning\s*sonja/,
+  /kronprins/,
+  /haakon/,
+  /mette-?marit/,
+  /tronen/,
+  /ny\s+konge/,
+  /slottet/,
+  /slottsplass/,
 ];
 
 /**
