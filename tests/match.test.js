@@ -36,6 +36,15 @@ describe("shouldHide", () => {
     ).toBe(true);
   });
 
+  it("matches Nettavisen takket-folket / dronningene clickbait", () => {
+    expect(
+      shouldHide(
+        "Dukket plutselig opp https://www.nettavisen.no/nyheter/dukket-plutselig-opp-takket-folket/v/1"
+      )
+    ).toBe(true);
+    expect(shouldHide("Dronningene hånd i hånd")).toBe(true);
+  });
+
   it("matches Slottskapellet clickbait slugs", () => {
     expect(
       shouldHide(
