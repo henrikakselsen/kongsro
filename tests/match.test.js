@@ -37,6 +37,14 @@ describe("shouldHide", () => {
     expect(shouldHide("Dronningene hånd i hånd")).toBe(true);
   });
 
+  it("matches Slottskapellet clickbait slugs", () => {
+    expect(
+      shouldHide(
+        "Historiske bilder: - Må være veldig tøft https://www.dagbladet.no/kjendis/fraktes-til-slottskapellet/85090129"
+      )
+    ).toBe(true);
+  });
+
   it("matches NRK gallery / condolence slugs", () => {
     expect(shouldHide("Sterkt preget av blomsterhavet")).toBe(true);
     expect(
