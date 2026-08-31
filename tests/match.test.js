@@ -28,12 +28,13 @@ describe("shouldHide", () => {
     expect(shouldHide("Konge\u00adfamilien kom ut og takket folket")).toBe(true);
   });
 
-  it("matches Slottskapellet clickbait slugs", () => {
+  it("matches Nettavisen takket-folket / dronningene clickbait", () => {
     expect(
       shouldHide(
-        "Historiske bilder: - Må være veldig tøft https://www.dagbladet.no/kjendis/fraktes-til-slottskapellet/85090129"
+        "Dukket plutselig opp https://www.nettavisen.no/nyheter/dukket-plutselig-opp-takket-folket/v/1"
       )
     ).toBe(true);
+    expect(shouldHide("Dronningene hånd i hånd")).toBe(true);
   });
 
   it("matches NRK gallery / condolence slugs", () => {

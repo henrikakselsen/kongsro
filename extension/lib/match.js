@@ -38,6 +38,8 @@ export const RULES = [
   /sverre/,
   /kondolanse/,
   /blomsterhav/,
+  /takket/,
+  /dronning/,
 ];
 
 /**

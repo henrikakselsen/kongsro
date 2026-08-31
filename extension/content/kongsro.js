@@ -38,6 +38,8 @@
     /sverre/,
     /kondolanse/,
     /blomsterhav/,
+    /takket/,
+    /dronning/,
   ];
 
   const HIDDEN = "kongsro-hidden";
@@ -240,16 +242,26 @@
 
     // Nettavisen brick groups + royal front packages
     document
-      .querySelectorAll("brick-teaser-group-v0, section.rodimus-complex-front")
+      .querySelectorAll(
+        "brick-teaser-group-v0, section.rodimus-complex-front, div.rodimus-front"
+      )
       .forEach((group) => {
         const arts = Array.from(group.querySelectorAll("article"));
         if (!arts.length) return;
-        const matchCount = arts.filter(
+        const matching = arts.filter(
           (a) => a.classList.contains(HIDDEN) || elementMatches(a)
-        ).length;
-        if (matchCount < 1) return;
-        hideElement(group);
-        arts.forEach((a) => hideElement(a));
+        );
+        if (!matching.length) return;
+        // complex-front / teaser-group: hide whole package
+        if (
+          group.matches("brick-teaser-group-v0, section.rodimus-complex-front")
+        ) {
+          hideElement(group);
+          arts.forEach((a) => hideElement(a));
+          return;
+        }
+        // mixed rodimus-front rails: only hide matching teasers (+ their bricks)
+        matching.forEach((a) => hideElement(a));
       });
 
     // NRK kur floors: wipe top floor (or any floor with several matches)
