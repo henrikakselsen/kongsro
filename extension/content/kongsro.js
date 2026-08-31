@@ -32,6 +32,7 @@
     /ny\s+konge/,
     /slottet/,
     /slottsplass/,
+    /slottskapell/,
     /prins/,
     /sverre/,
   ];
@@ -50,7 +51,7 @@
     },
   };
   const SITE_HOSTS = Object.keys(DEFAULT_SETTINGS.sites);
-  // Whole blocks to evaluate/hide (VG bundles, Dagbladet stripes, Nettavisen packages, etc.)
+  // Whole blocks to evaluate/hide (VG bundles, Dagbladet stripes, Nettavisen packages, TV2 mourning, etc.)
   const BLOCK_SELECTOR = [
     "section.bundle",
     ".bundle",
@@ -60,6 +61,15 @@
     ".rodimus-complex-front",
     "brick-teaser-group-v0",
     "brick-teaser-v23",
+    "section.two-columns--mourning",
+    "section[class*='--mourning']",
+    "div.two-columns--mourning",
+    "div[class*='--mourning']",
+    "div.mourning__wrapper",
+    "div.mourning__content",
+    "div.mourning",
+    "article.bg-mourning",
+    "article[class*='mourning']",
     ".column.stripe",
     "[class*='stripe']",
     "article.preview",
@@ -76,6 +86,8 @@
     "[data-article-id]",
   ].join(", ");
   const CARD_SELECTORS = [
+    "section.two-columns--mourning",
+    "section[class*='--mourning']",
     "section.rodimus-complex-front",
     ".rodimus-complex-front",
     "brick-teaser-group-v0",
@@ -87,6 +99,7 @@
     ".column.stripe",
     "[class*='stripe']",
     "article.b-teaser-container",
+    "article.bg-mourning",
     "article.preview",
     "article",
     "[data-article-id]",
@@ -197,7 +210,7 @@
   function hideRowNeighbours() {
     document.querySelectorAll("div.row").forEach((row) => {
       const arts = Array.from(row.querySelectorAll("article"));
-      if (arts.length < 2 || arts.length > 8) return;
+      if (arts.length < 2 || arts.length > 10) return;
 
       const matchCount = arts.filter(
         (a) => a.classList.contains(HIDDEN) || elementMatches(a)
@@ -225,10 +238,20 @@
     const seen = new Set();
 
     document.querySelectorAll(BLOCK_SELECTOR).forEach((block) => {
+      if (!(block instanceof Element)) return;
+      // Never hide the whole document chrome
+      if (block === document.body || block === document.documentElement) return;
+      if (block.matches("main, .main-section, .page-content, header, nav, footer")) return;
       if (block.closest(`.${HIDDEN}`)) return;
-      if (!elementMatches(block)) return;
-      seen.add(block);
-      hideElement(block);
+      // TV2 mourning packages: hide the block itself (clickbait inside has no keywords)
+      const isMourningPackage =
+        /\bmourning\b|--mourning|bg-mourning/i.test(block.className || "") &&
+        /^(SECTION|DIV|ARTICLE)$/i.test(block.tagName);
+      if (!isMourningPackage && !elementMatches(block)) return;
+      if (isMourningPackage || elementMatches(block)) {
+        seen.add(block);
+        hideElement(block);
+      }
     });
 
     const nodes = document.querySelectorAll(
