@@ -42,6 +42,8 @@ export const RULES = [
   /dronning/,
   /dode/,
   /døde/,
+  // Dagbladet sport-live clickbait with royal image/title, football destination
+  /veldig\s+triste\s+nyheter/,
 ];
 
 /**
