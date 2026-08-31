@@ -28,6 +28,17 @@ describe("shouldHide", () => {
     expect(shouldHide("Konge\u00adfamilien kom ut og takket folket")).toBe(true);
   });
 
+  it("matches keywords in URL slugs (clickbait teasers)", () => {
+    expect(
+      shouldHide(
+        "Ble stående igjen alene https://www.dagbladet.no/kjendis/kongefamilien-gar-ut-pa-slottsplassen/85090768"
+      )
+    ).toBe(true);
+    expect(
+      shouldHide("SE NÅ: - Bryter med tradisjonene /video/dukket-opp-kongefamilien-takket-folket/")
+    ).toBe(true);
+  });
+
   it("does not hide unrelated news", () => {
     expect(shouldHide("Renter på boliglån synker")).toBe(false);
     expect(shouldHide("Fotball: Norge vant 2–1")).toBe(false);

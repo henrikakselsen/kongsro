@@ -90,8 +90,36 @@
   function shouldHide(text) {
     if (!text || typeof text !== "string") return false;
     // Strip soft hyphens (NRK etc.) so "Konge­familien" matches
-    const normalized = text.toLowerCase().normalize("NFC").replace(/\u00ad/g, "");
+    const normalized = text
+      .toLowerCase()
+      .normalize("NFC")
+      .replace(/\u00ad/g, "")
+      .replace(/[-_/]+/g, " ");
     return RULES.some((rule) => rule.test(normalized));
+  }
+
+  /**
+   * Visible text + link URLs (Dagbladet clickbait often only has keywords in the slug).
+   * @param {Element} el
+   */
+  function matchBlob(el) {
+    const text = (el.innerText || el.textContent || "").slice(0, 4000);
+    const hrefs = Array.from(el.querySelectorAll("a[href]"))
+      .map((a) => {
+        try {
+          return decodeURIComponent(a.getAttribute("href") || a.href || "");
+        } catch (_) {
+          return a.getAttribute("href") || "";
+        }
+      })
+      .join(" ");
+    const selfHref =
+      el instanceof HTMLAnchorElement ? el.getAttribute("href") || el.href || "" : "";
+    return `${text} ${hrefs} ${selfHref}`;
+  }
+
+  function elementMatches(el) {
+    return shouldHide(matchBlob(el));
   }
 
   function siteKeyFromHost(hostname) {
@@ -144,13 +172,29 @@
     return el;
   }
 
+  /**
+   * Hide remaining teasers in a grid row when any sibling already matches
+   * (clickbait with no keywords next to royal coverage). Aggressive by design.
+   */
+  function hideRowNeighbours() {
+    document.querySelectorAll("div.row").forEach((row) => {
+      const arts = Array.from(row.querySelectorAll("article"));
+      if (arts.length < 2 || arts.length > 8) return;
+
+      const matchCount = arts.filter(
+        (a) => a.classList.contains(HIDDEN) || elementMatches(a)
+      ).length;
+      if (matchCount < 1) return;
+      arts.forEach((a) => hideElement(a));
+    });
+  }
+
   function scanAndHide() {
     const seen = new Set();
 
     document.querySelectorAll(BLOCK_SELECTOR).forEach((block) => {
       if (block.closest(`.${HIDDEN}`)) return;
-      const text = (block.innerText || block.textContent || "").slice(0, 6000);
-      if (!shouldHide(text)) return;
+      if (!elementMatches(block)) return;
       seen.add(block);
       hideElement(block);
     });
@@ -163,8 +207,10 @@
       if (el.closest("[data-kongsro-ui]")) return;
       if (el.closest(`.${HIDDEN}`)) return;
       const text = (el.innerText || el.textContent || "").trim();
-      if (text.length < 8 || text.length > 500) return;
-      if (!shouldHide(text)) return;
+      const href = el instanceof HTMLAnchorElement ? el.href || "" : "";
+      if (text.length < 8 && !href) return;
+      if (text.length > 500 && !shouldHide(href)) return;
+      if (!shouldHide(`${text} ${href}`)) return;
       const card = findCard(el);
       if (seen.has(card) || card.closest(`.${HIDDEN}`)) return;
       for (const s of seen) {
@@ -174,14 +220,14 @@
       hideElement(card);
     });
 
-    // Extra pass: any article whose text matches
     document.querySelectorAll("article").forEach((article) => {
       if (article.closest(`.${HIDDEN}`) || seen.has(article)) return;
-      const text = (article.innerText || article.textContent || "").slice(0, 800);
-      if (!shouldHide(text)) return;
+      if (!elementMatches(article)) return;
       seen.add(article);
       hideElement(article);
     });
+
+    hideRowNeighbours();
   }
 
   function showArticlePlaceholder() {

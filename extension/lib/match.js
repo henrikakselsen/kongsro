@@ -40,6 +40,10 @@ export const RULES = [
  */
 export function shouldHide(text) {
   if (!text || typeof text !== "string") return false;
-  const normalized = text.toLowerCase().normalize("NFC").replace(/\u00ad/g, "");
+  const normalized = text
+    .toLowerCase()
+    .normalize("NFC")
+    .replace(/\u00ad/g, "")
+    .replace(/[-_/]+/g, " ");
   return RULES.some((rule) => rule.test(normalized));
 }
