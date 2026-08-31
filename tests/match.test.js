@@ -62,6 +62,14 @@ describe("shouldHide", () => {
     expect(shouldHide("Tippeligaen: Triste nyheter for Rosenborg")).toBe(false);
   });
 
+  it("hides Dagbladet mourner security-check clickbait", () => {
+    expect(
+      shouldHide(
+        "Spår opp mot 100 000: Må gjennom sikkerhetskontroll https://www.dagbladet.no/kjendis/ma-gjennom-sikkerhetskontroll/85091235"
+      )
+    ).toBe(true);
+  });
+
   it("matches NRK gallery / condolence slugs", () => {
     expect(shouldHide("Sterkt preget av blomsterhavet")).toBe(true);
     expect(
