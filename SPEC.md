@@ -1,4 +1,4 @@
-# Spec: Konge-filter (Chrome extension)
+# Spec: Kongsro (Chrome extension)
 
 ## Objective
 
@@ -71,7 +71,7 @@ tests/
 
 - Small pure functions for matching; DOM side effects only in content scripts
 - Norwegian UI copy in popup; English for commits; store listing language TBD (NO or EN)
-- Prefer data attributes / CSS class `konge-filter-hidden` over deleting nodes (reversible when toggled off)
+- Prefer data attributes / CSS class `kongsro-hidden` over deleting nodes (reversible when toggled off)
 - Example matching API:
 
 ```js
@@ -102,7 +102,7 @@ Exact phrase lists live in `extension/lib/match.js` (or `rules.json`) and are ve
 ### What to hide
 
 - List/front-page **cards / teasers / headline rows** whose visible text matches
-- On article pages: if title or lead matches, hide main article content and show a short Norwegian placeholder (“Skjult av Konge-filter”) with a link/button to reveal once
+- On article pages: if title or lead matches, hide main article content and show a short Norwegian placeholder (“Skjult av Kongsro”) with a link/button to reveal once
 
 ### MutationObserver
 
@@ -141,7 +141,7 @@ Re-run on DOM changes (infinite scroll, live updates). Use a single observer per
 
 ## Decisions (locked)
 
-1. **Name:** `konge-filter` (extension display name: Konge-filter).
+1. **Name:** `kongsro` (extension display name: Kongsro).
 2. **Rules:** Always active while the extension is enabled; turn the extension off to see coverage.
 3. **Icon:** Minimal monochrome (or simple mark) for v1.
 4. **Distribution:** Chrome Web Store **only** for end users — no public GitHub install path.

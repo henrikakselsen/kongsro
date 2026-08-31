@@ -1,4 +1,4 @@
-# Plan: konge-filter v1
+# Plan: kongsro v1
 
 Approved SPEC: `SPEC.md` (Chrome Web Store only, always-on rules, six sites, aggressive hide).
 
@@ -24,7 +24,7 @@ scaffold (manifest + empty load)
 
 1. **Vanilla MV3, no bundler** — ES modules only if Chrome content-script constraints allow; otherwise classic scripts + shared `lib/match.js` loaded via script list in manifest. Prefer the simplest pattern that unit-tests `shouldHide` in Node (extract pure match module without `chrome.*`).
 2. **Generic DOM strategy first** — walk likely teaser containers (article, li, [class*="teaser"], links with headlines); hide closest card ancestor. Tune per-site only if QA shows misses.
-3. **CSS class hide** — `.konge-filter-hidden { display: none !important; }` for reversible toggles.
+3. **CSS class hide** — `.kongsro-hidden { display: none !important; }` for reversible toggles.
 4. **Ship order** — working Load unpacked + tests before store assets (icon, privacy, listing, pack).
 5. **Publish gate** — packing is in scope; uploading/publishing to the Web Store is **Ask first**.
 

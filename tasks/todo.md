@@ -1,11 +1,11 @@
-# Todo: konge-filter v1
+# Todo: kongsro v1
 
 ## Task 1: Extension scaffold
 
 **Description:** Create `extension/manifest.json` (MV3), minimal background, empty content stub, `package.json` with test script placeholder so “Load unpacked” works.
 
 **Acceptance criteria:**
-- [ ] Manifest names the extension `Konge-filter` and lists the six host patterns
+- [ ] Manifest names the extension `Kongsro` and lists the six host patterns
 - [ ] Load unpacked succeeds with no errors on `chrome://extensions`
 
 **Verification:**
@@ -56,7 +56,7 @@
 
 ## Task 3: Content script hide + observer
 
-**Description:** Scan page for card/teaser text, apply `konge-filter-hidden`, observe mutations (debounced). Wire match module into content script.
+**Description:** Scan page for card/teaser text, apply `kongsro-hidden`, observe mutations (debounced). Wire match module into content script.
 
 **Acceptance criteria:**
 - [ ] Matching teasers hidden on a supported homepage
@@ -135,7 +135,7 @@
 
 ## Task 6: Article placeholder + reveal-once
 
-**Description:** On article pages, if title/lead matches, hide main content and show “Skjult av Konge-filter” with reveal control.
+**Description:** On article pages, if title/lead matches, hide main content and show “Skjult av Kongsro” with reveal control.
 
 **Acceptance criteria:**
 - [ ] Matching article shows placeholder
