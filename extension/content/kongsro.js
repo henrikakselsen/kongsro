@@ -35,6 +35,8 @@
     /slottskapell/,
     /prins/,
     /sverre/,
+    /kondolanse/,
+    /blomsterhav/,
   ];
 
   const HIDDEN = "kongsro-hidden";
@@ -51,7 +53,7 @@
     },
   };
   const SITE_HOSTS = Object.keys(DEFAULT_SETTINGS.sites);
-  // Whole blocks to evaluate/hide (VG bundles, Dagbladet stripes, Nettavisen packages, TV2 mourning, etc.)
+  // Whole blocks to evaluate/hide (VG bundles, Dagbladet stripes, Nettavisen packages, TV2 mourning, NRK kur, etc.)
   const BLOCK_SELECTOR = [
     "section.bundle",
     ".bundle",
@@ -70,6 +72,11 @@
     "div.mourning",
     "article.bg-mourning",
     "article[class*='mourning']",
+    "div.kur-top-floors",
+    "section.kur-floor--top",
+    "section.kur-floor",
+    "div.kur-room-wrapper",
+    "div.kur-room",
     ".column.stripe",
     "[class*='stripe']",
     "article.preview",
@@ -86,6 +93,11 @@
     "[data-article-id]",
   ].join(", ");
   const CARD_SELECTORS = [
+    "div.kur-top-floors",
+    "section.kur-floor--top",
+    "section.kur-floor",
+    "div.kur-room-wrapper",
+    "div.kur-room",
     "section.two-columns--mourning",
     "section[class*='--mourning']",
     "section.rodimus-complex-front",
@@ -184,6 +196,12 @@
       brick.classList.add(HIDDEN);
       brick.setAttribute(MARK, "1");
     }
+    // NRK: climb to room / floor card
+    const room = el.closest?.(".kur-room-wrapper, .kur-room");
+    if (room && room !== el) {
+      room.classList.add(HIDDEN);
+      room.setAttribute(MARK, "1");
+    }
   }
 
   function unhideAll() {
@@ -232,6 +250,22 @@
         hideElement(group);
         arts.forEach((a) => hideElement(a));
       });
+
+    // NRK kur floors: wipe top floor (or any floor with several matches)
+    document.querySelectorAll("section.kur-floor").forEach((floor) => {
+      const rooms = Array.from(floor.querySelectorAll(".kur-room-wrapper, .kur-room"));
+      if (!rooms.length) return;
+      const matchCount = rooms.filter(
+        (r) => r.classList.contains(HIDDEN) || elementMatches(r)
+      ).length;
+      const isTop = floor.classList.contains("kur-floor--top");
+      if (!(isTop || matchCount >= 2 || (rooms.length && matchCount / rooms.length >= 0.3))) {
+        return;
+      }
+      if (matchCount < 1 && !elementMatches(floor)) return;
+      hideElement(floor);
+      rooms.forEach((r) => hideElement(r));
+    });
   }
 
   function scanAndHide() {
@@ -243,12 +277,13 @@
       if (block === document.body || block === document.documentElement) return;
       if (block.matches("main, .main-section, .page-content, header, nav, footer")) return;
       if (block.closest(`.${HIDDEN}`)) return;
-      // TV2 mourning packages: hide the block itself (clickbait inside has no keywords)
-      const isMourningPackage =
-        /\bmourning\b|--mourning|bg-mourning/i.test(block.className || "") &&
+      // TV2 mourning / NRK top floor packages: hide the block itself
+      const isPackageBlock =
+        (/\bmourning\b|--mourning|bg-mourning/i.test(block.className || "") ||
+          /\bkur-floor--top\b|\bkur-top-floors\b/i.test(block.className || "")) &&
         /^(SECTION|DIV|ARTICLE)$/i.test(block.tagName);
-      if (!isMourningPackage && !elementMatches(block)) return;
-      if (isMourningPackage || elementMatches(block)) {
+      if (!isPackageBlock && !elementMatches(block)) return;
+      if (isPackageBlock || elementMatches(block)) {
         seen.add(block);
         hideElement(block);
       }

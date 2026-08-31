@@ -28,6 +28,15 @@ describe("shouldHide", () => {
     expect(shouldHide("Konge\u00adfamilien kom ut og takket folket")).toBe(true);
   });
 
+  it("matches NRK gallery / condolence slugs", () => {
+    expect(shouldHide("Sterkt preget av blomsterhavet")).toBe(true);
+    expect(
+      shouldHide(
+        "Se bildene https://www.nrk.no/norge/kongefamilen-motte-folket-pa-slottsplassen-1.18009547"
+      )
+    ).toBe(true);
+  });
+
   it("matches keywords in URL slugs (clickbait teasers)", () => {
     expect(
       shouldHide(
