@@ -32,6 +32,8 @@
     /ny\s+konge/,
     /slottet/,
     /slottsplass/,
+    /prins/,
+    /sverre/,
   ];
 
   const HIDDEN = "kongsro-hidden";
@@ -48,16 +50,21 @@
     },
   };
   const SITE_HOSTS = Object.keys(DEFAULT_SETTINGS.sites);
-  // Whole blocks to evaluate/hide (VG bundles, Dagbladet stripes/condolences, etc.)
+  // Whole blocks to evaluate/hide (VG bundles, Dagbladet stripes, Nettavisen packages, etc.)
   const BLOCK_SELECTOR = [
     "section.bundle",
     ".bundle",
     "[class*='bundle']",
     "[class*='_bundle_']",
+    "section.rodimus-complex-front",
+    ".rodimus-complex-front",
+    "brick-teaser-group-v0",
+    "brick-teaser-v23",
     ".column.stripe",
     "[class*='stripe']",
     "article.preview",
     "article.column.preview",
+    "article.b-teaser-container",
     "[class*='kingCondolences']",
     "[class*='Condolence']",
     "[class*='condolence']",
@@ -69,12 +76,17 @@
     "[data-article-id]",
   ].join(", ");
   const CARD_SELECTORS = [
+    "section.rodimus-complex-front",
+    ".rodimus-complex-front",
+    "brick-teaser-group-v0",
+    "brick-teaser-v23",
     "section.bundle",
     ".bundle",
     "[class*='bundle']",
     "[class*='_bundle_']",
     ".column.stripe",
     "[class*='stripe']",
+    "article.b-teaser-container",
     "article.preview",
     "article",
     "[data-article-id]",
@@ -153,6 +165,12 @@
     if (!(el instanceof Element)) return;
     el.classList.add(HIDDEN);
     el.setAttribute(MARK, "1");
+    // Nettavisen: also hide brick wrappers around the teaser
+    const brick = el.closest?.("brick-teaser-v23, brick-teaser-group-v0");
+    if (brick && brick !== el) {
+      brick.classList.add(HIDDEN);
+      brick.setAttribute(MARK, "1");
+    }
   }
 
   function unhideAll() {
@@ -173,7 +191,7 @@
   }
 
   /**
-   * Hide remaining teasers in a grid row when any sibling already matches
+   * Hide remaining teasers in a grid row / teaser group when any sibling matches
    * (clickbait with no keywords next to royal coverage). Aggressive by design.
    */
   function hideRowNeighbours() {
@@ -187,6 +205,20 @@
       if (matchCount < 1) return;
       arts.forEach((a) => hideElement(a));
     });
+
+    // Nettavisen brick groups + royal front packages
+    document
+      .querySelectorAll("brick-teaser-group-v0, section.rodimus-complex-front")
+      .forEach((group) => {
+        const arts = Array.from(group.querySelectorAll("article"));
+        if (!arts.length) return;
+        const matchCount = arts.filter(
+          (a) => a.classList.contains(HIDDEN) || elementMatches(a)
+        ).length;
+        if (matchCount < 1) return;
+        hideElement(group);
+        arts.forEach((a) => hideElement(a));
+      });
   }
 
   function scanAndHide() {

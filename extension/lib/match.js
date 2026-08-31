@@ -32,6 +32,8 @@ export const RULES = [
   /ny\s+konge/,
   /slottet/,
   /slottsplass/,
+  /prins/,
+  /sverre/,
 ];
 
 /**

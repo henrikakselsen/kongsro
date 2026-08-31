@@ -37,6 +37,16 @@ describe("shouldHide", () => {
     expect(
       shouldHide("SE NÅ: - Bryter med tradisjonene /video/dukket-opp-kongefamilien-takket-folket/")
     ).toBe(true);
+    expect(
+      shouldHide(
+        "– Det har skjedd noe med ham https://www.nettavisen.no/nyheter/prins-sverre-magnus-ekspert-det-har-skjedd-noe-med-ham/s/1"
+      )
+    ).toBe(true);
+    expect(
+      shouldHide(
+        "Hotell stenger dørene https://www.nettavisen.no/nyheter/kong-haralds-gravferd-hoteller-i-oslo-stenges/s/1"
+      )
+    ).toBe(true);
   });
 
   it("does not hide unrelated news", () => {
