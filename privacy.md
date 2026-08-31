@@ -12,7 +12,7 @@ Kongsro is a Chrome extension that hides selected news teasers and articles on N
 ## Permissions
 
 - **storage** — save your filter preferences.
-- **Host access** (vg.no, dagbladet.no, aftenposten.no, nrk.no, tv2.no, nettavisen.no) — run the filter on those sites only.
+- **Host access** (vg.no, dagbladet.no, aftenposten.no, nrk.no, tv2.no, nettavisen.no, e24.no, abcnyheter.no, dagsavisen.no) — run the filter on those sites only.
 
 ## Contact
 

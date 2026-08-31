@@ -6,6 +6,9 @@ describe("siteKeyFromHost", () => {
     expect(siteKeyFromHost("www.vg.no")).toBe("vg.no");
     expect(siteKeyFromHost("vg.no")).toBe("vg.no");
     expect(siteKeyFromHost("www.nrk.no")).toBe("nrk.no");
+    expect(siteKeyFromHost("www.e24.no")).toBe("e24.no");
+    expect(siteKeyFromHost("www.abcnyheter.no")).toBe("abcnyheter.no");
+    expect(siteKeyFromHost("www.dagsavisen.no")).toBe("dagsavisen.no");
   });
 
   it("returns null for unsupported hosts", () => {

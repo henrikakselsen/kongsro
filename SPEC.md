@@ -22,6 +22,9 @@ Build a Manifest V3 Chrome extension that **aggressively hides** the full media 
 | NRK | `*.nrk.no` |
 | TV 2 | `*.tv2.no` |
 | Nettavisen | `*.nettavisen.no` |
+| E24 | `*.e24.no` |
+| ABC Nyheter | `*.abcnyheter.no` |
+| Dagsavisen | `*.dagsavisen.no` |
 
 ## Tech Stack
 
@@ -126,7 +129,7 @@ Re-run on DOM changes (infinite scroll, live updates). Use a single observer per
 
 - **Always:** Keep matching logic pure and unit-tested; never send page content off-device; run `npm test` before commit when tests exist; update SPEC when rule philosophy changes; keep store listing + privacy accurate
 - **Ask first:** Adding sites beyond the six; adding a build bundler/React; **submitting / publishing** to Chrome Web Store; changing aggressiveness toward precision; collecting any telemetry; making source public on GitHub
-- **Never:** Remote code fetch for rules; reading page content into a server; requesting host permissions outside the six domains (+ `chrome.storage`); committing secrets or store API keys
+- **Never:** Remote code fetch for rules; reading page content into a server; requesting host permissions outside the supported domains (+ `chrome.storage`); committing secrets or store API keys
 
 ## Success Criteria
 

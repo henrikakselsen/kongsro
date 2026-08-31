@@ -7,6 +7,9 @@ const DEFAULT_SETTINGS = {
     "nrk.no": true,
     "tv2.no": true,
     "nettavisen.no": true,
+    "e24.no": true,
+    "abcnyheter.no": true,
+    "dagsavisen.no": true,
   },
 };
 

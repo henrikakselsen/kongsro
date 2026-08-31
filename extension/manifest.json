@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Kongsro",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Skjuler kongelig mediestorm (dødsfallsbølge) på de største norske nettavisene.",
   "permissions": ["storage"],
   "host_permissions": [
@@ -16,7 +16,13 @@
     "*://tv2.no/*",
     "*://*.tv2.no/*",
     "*://nettavisen.no/*",
-    "*://*.nettavisen.no/*"
+    "*://*.nettavisen.no/*",
+    "*://e24.no/*",
+    "*://*.e24.no/*",
+    "*://abcnyheter.no/*",
+    "*://*.abcnyheter.no/*",
+    "*://dagsavisen.no/*",
+    "*://*.dagsavisen.no/*"
   ],
   "background": {
     "service_worker": "background.js"
@@ -49,7 +55,13 @@
         "*://tv2.no/*",
         "*://*.tv2.no/*",
         "*://nettavisen.no/*",
-        "*://*.nettavisen.no/*"
+        "*://*.nettavisen.no/*",
+        "*://e24.no/*",
+        "*://*.e24.no/*",
+        "*://abcnyheter.no/*",
+        "*://*.abcnyheter.no/*",
+        "*://dagsavisen.no/*",
+        "*://*.dagsavisen.no/*"
       ],
       "js": ["content/kongsro.js"],
       "css": ["content/hide.css"],

@@ -59,6 +59,9 @@
       "nrk.no": true,
       "tv2.no": true,
       "nettavisen.no": true,
+      "e24.no": true,
+      "abcnyheter.no": true,
+      "dagsavisen.no": true,
     },
   };
   const SITE_HOSTS = Object.keys(DEFAULT_SETTINGS.sites);
