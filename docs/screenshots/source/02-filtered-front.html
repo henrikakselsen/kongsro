@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="nb">
+  <head>
+    <meta charset="utf-8" />
+    <title>Kongsro store shot 2</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        width: 1280px;
+        height: 800px;
+        overflow: hidden;
+        font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+        background: #ece9e3;
+        color: #111;
+        display: grid;
+        grid-template-rows: auto 1fr;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 22px 40px;
+        background: #111;
+        color: #fff;
+      }
+      header strong { font-size: 22px; letter-spacing: -0.02em; }
+      .badge {
+        background: #f4f1ea;
+        color: #111;
+        border-radius: 999px;
+        padding: 8px 14px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr;
+        gap: 18px;
+        padding: 28px 40px 40px;
+      }
+      .card {
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #ddd6cb;
+        min-height: 280px;
+        display: flex;
+        flex-direction: column;
+      }
+      .card.hidden-slot {
+        background: repeating-linear-gradient(
+          -45deg,
+          #f3f0ea,
+          #f3f0ea 10px,
+          #ebe6dc 10px,
+          #ebe6dc 20px
+        );
+        border-style: dashed;
+        align-items: center;
+        justify-content: center;
+        color: #6b655c;
+        font-size: 18px;
+        font-weight: 600;
+        text-align: center;
+        padding: 24px;
+      }
+      .card.hidden-slot small {
+        display: block;
+        margin-top: 8px;
+        font-size: 13px;
+        font-weight: 500;
+        opacity: 0.8;
+      }
+      .thumb {
+        height: 160px;
+        background: linear-gradient(120deg, #2f5d50, #7aa48f);
+      }
+      .thumb.b { background: linear-gradient(120deg, #3a4a6b, #7f91b8); }
+      .thumb.c { background: linear-gradient(120deg, #6a3b2e, #c0896f); }
+      .body { padding: 16px 18px 20px; }
+      .kicker { font-size: 12px; color: #777; text-transform: uppercase; letter-spacing: 0.06em; }
+      .title { font-size: 20px; font-weight: 700; margin: 6px 0 0; line-height: 1.25; }
+      .note {
+        grid-column: 1 / -1;
+        margin-top: 8px;
+        font-size: 16px;
+        color: #444;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <strong>Forside med Kongsro</strong>
+      <div class="badge">Kongestoff skjult</div>
+    </header>
+    <div class="grid">
+      <article class="card">
+        <div class="thumb"></div>
+        <div class="body">
+          <div class="kicker">Nyheter</div>
+          <div class="title">Regjeringen presenterer ny klimaplan for transport</div>
+        </div>
+      </article>
+      <article class="card hidden-slot">
+        Skjult av Kongsro
+        <small>Kongelig sørgestoff</small>
+      </article>
+      <article class="card hidden-slot">
+        Skjult av Kongsro
+        <small>Clickbait / hyllest</small>
+      </article>
+      <article class="card">
+        <div class="thumb b"></div>
+        <div class="body">
+          <div class="kicker">Sport</div>
+          <div class="title">Derbyet endte uavgjort etter dramatisk sluttminutt</div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb c"></div>
+        <div class="body">
+          <div class="kicker">Økonomi</div>
+          <div class="title">Norges Bank holder renten uendret</div>
+        </div>
+      </article>
+      <article class="card hidden-slot">
+        Skjult av Kongsro
+        <small>Bisettelse / Slottsplassen</small>
+      </article>
+      <p class="note">Illustrasjon: kongelige overskrifter skjules lokalt. Øvrige nyheter vises som normalt.</p>
+    </div>
+  </body>
+</html>

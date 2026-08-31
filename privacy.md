@@ -16,4 +16,8 @@ Kongsro is a Chrome extension that hides selected news teasers and articles on N
 
 ## Contact
 
-For privacy questions, contact the publisher via the Chrome Web Store listing support email.
+For privacy questions, open an issue on [GitHub](https://github.com/henrikakselsen/kongsro/issues)
+or use the support email on the Chrome Web Store listing.
+
+**Public policy URL:** https://henrikakselsen.github.io/kongsro/privacy/
+

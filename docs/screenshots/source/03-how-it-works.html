@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="nb">
+  <head>
+    <meta charset="utf-8" />
+    <title>Kongsro store shot 3</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        width: 1280px;
+        height: 800px;
+        overflow: hidden;
+        font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+        background: #f4f1ea;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .panel {
+        padding: 64px 56px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .panel.dark {
+        background: #171717;
+        color: #f4f1ea;
+      }
+      h1 {
+        font-size: 48px;
+        margin: 0 0 16px;
+        letter-spacing: -0.03em;
+      }
+      p {
+        font-size: 22px;
+        line-height: 1.4;
+        margin: 0;
+        color: #cfc8bb;
+        max-width: 22ch;
+      }
+      .panel.light h1 { color: #111; }
+      .panel.light p { color: #555; max-width: 28ch; }
+      ul {
+        margin: 28px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+      li {
+        font-size: 20px;
+        margin: 12px 0;
+        padding-left: 28px;
+        position: relative;
+        color: #222;
+      }
+      li::before {
+        content: "";
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #111;
+        position: absolute;
+        left: 0;
+        top: 0.4em;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="panel dark">
+      <h1>Lokalt. Aggressivt. Av/på.</h1>
+      <p>Ingen konto. Ingen sporing. Ingen sky-analyse.</p>
+    </section>
+    <section class="panel light">
+      <h1>Slik fungerer det</h1>
+      <p>Norske nøkkelord matcher overskrifter og lenker på støttede aviser.</p>
+      <ul>
+        <li>Skru av globalt eller per nettsted</li>
+        <li>Bedre å skjule for mye enn for lite</li>
+        <li>Personvern: kun i din nettleser</li>
+      </ul>
+    </section>
+  </body>
+</html>

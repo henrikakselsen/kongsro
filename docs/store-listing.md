@@ -31,6 +31,17 @@ Kongsro demper «overkill»-dekning rundt kongelige hendelser (inkl. dødsfallsb
 
 News & Weather (or Productivity)
 
-## Single purpose
+## Privacy policy URL (Chrome Web Store)
 
-Hide royal/news-overkill coverage on selected Norwegian news sites.
+https://henrikakselsen.github.io/kongsro/privacy/
+
+## Screenshots (upload these in the dashboard)
+
+Files in `docs/screenshots/` (1280×800 PNG):
+
+1. `01-overview.png` — product + popup
+2. `02-filtered-front.png` — filtered frontpage illustration
+3. `03-how-it-works.png` — local / aggressive / privacy
+
+Regenerate: `npm run screenshots`
+

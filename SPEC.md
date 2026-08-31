@@ -4,7 +4,7 @@
 
 Build a Manifest V3 Chrome extension that **aggressively hides** the full media wave around the Norwegian king's death — death itself, funeral/memorial coverage, succession, tributes, schedule changes, and related “kongelig overkill” — on six Norwegian news sites, so front pages and article lists stay usable.
 
-**Distribution:** **Chrome Web Store only** for end users. Local git may exist for development; there is **no** public GitHub install channel in v1.
+**Distribution:** **Chrome Web Store** for end users. Source may be public on GitHub (personal account); GitHub is **not** the primary install channel.
 
 **User stories**
 
