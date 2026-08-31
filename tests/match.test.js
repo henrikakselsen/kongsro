@@ -53,6 +53,15 @@ describe("shouldHide", () => {
     ).toBe(true);
   });
 
+  it("hides Dagbladet royal-image football clickbait title", () => {
+    expect(
+      shouldHide(
+        "- Veldig triste nyheter https://live.dagbladet.no/fotball/2026-08-31/1/events/3262981"
+      )
+    ).toBe(true);
+    expect(shouldHide("Tippeligaen: Triste nyheter for Rosenborg")).toBe(false);
+  });
+
   it("matches NRK gallery / condolence slugs", () => {
     expect(shouldHide("Sterkt preget av blomsterhavet")).toBe(true);
     expect(
