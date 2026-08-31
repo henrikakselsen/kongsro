@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="nb">
+  <head>
+    <meta charset="utf-8" />
+    <title>Kongsro</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <h1>Kongsro</h1>
+    <label class="row">
+      <input type="checkbox" id="enabled" />
+      <span>Filtrering på</span>
+    </label>
+    <fieldset>
+      <legend>Nettsteder</legend>
+      <label class="row"><input type="checkbox" data-site="vg.no" /> VG</label>
+      <label class="row"><input type="checkbox" data-site="dagbladet.no" /> Dagbladet</label>
+      <label class="row"><input type="checkbox" data-site="aftenposten.no" /> Aftenposten</label>
+      <label class="row"><input type="checkbox" data-site="nrk.no" /> NRK</label>
+      <label class="row"><input type="checkbox" data-site="tv2.no" /> TV 2</label>
+      <label class="row"><input type="checkbox" data-site="nettavisen.no" /> Nettavisen</label>
+    </fieldset>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

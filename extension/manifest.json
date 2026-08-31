@@ -1,0 +1,60 @@
+{
+  "manifest_version": 3,
+  "name": "Kongsro",
+  "version": "0.1.0",
+  "description": "Skjuler kongelig mediestorm (dødsfallsbølge) på de største norske nettavisene.",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "*://vg.no/*",
+    "*://*.vg.no/*",
+    "*://dagbladet.no/*",
+    "*://*.dagbladet.no/*",
+    "*://aftenposten.no/*",
+    "*://*.aftenposten.no/*",
+    "*://nrk.no/*",
+    "*://*.nrk.no/*",
+    "*://tv2.no/*",
+    "*://*.tv2.no/*",
+    "*://nettavisen.no/*",
+    "*://*.nettavisen.no/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Kongsro",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://vg.no/*",
+        "*://*.vg.no/*",
+        "*://dagbladet.no/*",
+        "*://*.dagbladet.no/*",
+        "*://aftenposten.no/*",
+        "*://*.aftenposten.no/*",
+        "*://nrk.no/*",
+        "*://*.nrk.no/*",
+        "*://tv2.no/*",
+        "*://*.tv2.no/*",
+        "*://nettavisen.no/*",
+        "*://*.nettavisen.no/*"
+      ],
+      "js": ["content/main.js"],
+      "css": ["content/hide.css"],
+      "run_at": "document_idle",
+      "type": "module"
+    }
+  ]
+}

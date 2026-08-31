@@ -1,0 +1,14 @@
+{
+  "name": "kongsro",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Chrome extension that hides royal death-wave news overkill on major Norwegian news sites",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "pack": "mkdir -p dist && cd extension && zip -r ../dist/kongsro.zip . -x '*.DS_Store'"
+  },
+  "devDependencies": {
+    "vitest": "^3.2.4"
+  }
+}
