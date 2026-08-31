@@ -40,6 +40,8 @@
     /blomsterhav/,
     /takket/,
     /dronning/,
+    /dode/,
+    /døde/,
   ];
 
   const HIDDEN = "kongsro-hidden";

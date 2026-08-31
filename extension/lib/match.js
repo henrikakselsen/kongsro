@@ -40,6 +40,8 @@ export const RULES = [
   /blomsterhav/,
   /takket/,
   /dronning/,
+  /dode/,
+  /døde/,
 ];
 
 /**

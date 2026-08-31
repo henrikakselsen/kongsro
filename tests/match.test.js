@@ -28,13 +28,12 @@ describe("shouldHide", () => {
     expect(shouldHide("Konge\u00adfamilien kom ut og takket folket")).toBe(true);
   });
 
-  it("matches Nettavisen takket-folket / dronningene clickbait", () => {
+  it("matches TV2 dode- URL clickbait", () => {
     expect(
       shouldHide(
-        "Dukket plutselig opp https://www.nettavisen.no/nyheter/dukket-plutselig-opp-takket-folket/v/1"
+        "– Hun har betydd alt for meg https://www.tv2.no/nyheter/dode-en-dag-for-bryllupsdagen-har-betydd-alt-for-meg/19171174/"
       )
     ).toBe(true);
-    expect(shouldHide("Dronningene hånd i hånd")).toBe(true);
   });
 
   it("matches Slottskapellet clickbait slugs", () => {
