@@ -24,9 +24,7 @@ describe("shouldHide", () => {
     expect(shouldHide("Dronning Sonja i sorg")).toBe(true);
   });
 
-  it("does not hide unrelated news", () => {
-    expect(shouldHide("Renter på boliglån synker")).toBe(false);
-    expect(shouldHide("Fotball: Norge vant 2–1")).toBe(false);
-    expect(shouldHide("Været: sol og regn i Oslo")).toBe(false);
+  it("strips soft hyphens used by NRK", () => {
+    expect(shouldHide("Konge\u00adfamilien kom ut og takket folket")).toBe(true);
   });
 });

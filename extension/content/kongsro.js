@@ -61,6 +61,12 @@
     "[class*='kingCondolences']",
     "[class*='Condolence']",
     "[class*='condolence']",
+    "[class*='teaser']",
+    "[class*='Teaser']",
+    "[class*='article']",
+    "[class*='card']",
+    "[class*='Card']",
+    "[data-article-id]",
   ].join(", ");
   const CARD_SELECTORS = [
     "section.bundle",
@@ -74,6 +80,7 @@
     "[data-article-id]",
     "[class*='teaser']",
     "[class*='Teaser']",
+    "[class*='article']",
     "[class*='story']",
     "[class*='card']",
     "[class*='preview']",
@@ -82,7 +89,8 @@
 
   function shouldHide(text) {
     if (!text || typeof text !== "string") return false;
-    const normalized = text.toLowerCase().normalize("NFC");
+    // Strip soft hyphens (NRK etc.) so "Konge­familien" matches
+    const normalized = text.toLowerCase().normalize("NFC").replace(/\u00ad/g, "");
     return RULES.some((rule) => rule.test(normalized));
   }
 
