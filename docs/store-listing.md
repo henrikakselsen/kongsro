@@ -1,12 +1,16 @@
 # Chrome Web Store listing — Kongsro
 
+## Live listing
+
+https://chromewebstore.google.com/detail/kongsro/ocgpaecakgdkiojnfepfbllkedhhhclp
+
 ## Title
 
 Kongsro
 
 ## Short description (≤132 chars)
 
-Skjuler kongelig mediestorm på blant annet VG, NRK, TV 2, E24 og Dagsavisen.
+For oss som sørger over kongen, men synes mediedekningen blir litt mye.
 
 ## Detailed description
 

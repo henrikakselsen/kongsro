@@ -6,7 +6,7 @@ Filtering runs **entirely in your browser**. No accounts, no analytics, no cloud
 
 ## Install
 
-- **Users:** Chrome Web Store (listing forthcoming)
+- **Users:** [Chrome Web Store](https://chromewebstore.google.com/detail/kongsro/ocgpaecakgdkiojnfepfbllkedhhhclp)
 - **Developers:** Chrome → `chrome://extensions` → Developer mode → Load unpacked → select `extension/`
 
 ## Supported sites
