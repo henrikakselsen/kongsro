@@ -38,7 +38,7 @@
     /sverre/,
     /kondolanse/,
     /blomsterhav/,
-    /takket/,
+    /takket\s+folket/,
     /dronning/,
     /dode/,
     /døde/,
@@ -348,7 +348,7 @@
     if (path === "/" || path.length < 8) return;
     const titleText = (document.querySelector("h1")?.innerText || document.title || "").trim();
     const lead = document.querySelector(
-      "[class*='lead'], [class*='ingress'], [class*='standfirst'], .article-lead, p"
+      "[class*='lead'], [class*='ingress'], [class*='standfirst'], .article-lead"
     );
     const leadText = (lead?.innerText || "").trim().slice(0, 400);
     if (!shouldHide(titleText) && !shouldHide(leadText)) return;

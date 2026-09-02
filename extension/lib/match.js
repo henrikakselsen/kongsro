@@ -38,7 +38,7 @@ export const RULES = [
   /sverre/,
   /kondolanse/,
   /blomsterhav/,
-  /takket/,
+  /takket\s+folket/,
   /dronning/,
   /dode/,
   /døde/,

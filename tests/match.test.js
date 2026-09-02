@@ -104,5 +104,10 @@ describe("shouldHide", () => {
     expect(shouldHide("Renter på boliglån synker")).toBe(false);
     expect(shouldHide("Fotball: Norge vant 2–1")).toBe(false);
     expect(shouldHide("Været: sol og regn i Oslo")).toBe(false);
+    expect(
+      shouldHide(
+        "Fernández takket Chelsea-fansen i en emosjonell melding før overgangen ble offisiell."
+      )
+    ).toBe(false);
   });
 });
