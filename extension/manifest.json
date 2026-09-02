@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Kongsro",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "For oss som sørger over kongen, men synes mediedekningen blir litt mye.",
   "permissions": ["storage"],
   "host_permissions": [

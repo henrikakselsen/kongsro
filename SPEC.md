@@ -2,7 +2,7 @@
 
 ## Objective
 
-Build a Manifest V3 Chrome extension that **aggressively hides** the full media wave around the Norwegian king's death — death itself, funeral/memorial coverage, succession, tributes, schedule changes, and related “kongelig overkill” — on six Norwegian news sites, so front pages and article lists stay usable.
+Build a Manifest V3 Chrome extension that **aggressively hides** the full media wave around the Norwegian king's death — death itself, funeral/memorial coverage, succession, tributes, schedule changes, and related “kongelig overkill” — on major Norwegian news **front pages**, so homepages stay usable. Article pages are never filtered.
 
 **Distribution:** **Chrome Web Store** for end users. Source may be public on GitHub (personal account); GitHub is **not** the primary install channel.
 
@@ -93,7 +93,7 @@ export function shouldHide(text, rules) {
 
 ### What to match (v1 rule set — expandable)
 
-Match against teaser/card/headline/lead text (and full article title/body when on article pages), case-insensitive, Norwegian:
+Match against teaser/card/headline text on **front pages only**, case-insensitive, Norwegian:
 
 - Death / mourning: `død`, `døde`, `bisett`, `begrav`, `minneseremoni`, `sorg`, `landesorg`, …
 - King / household in crisis context: `kongen`, `kong harald`, `kongehuset`, `slottet`, `dronning sonja`, `kronprins`, `haakon`, `mette-marit`, …
@@ -105,7 +105,7 @@ Exact phrase lists live in `extension/lib/match.js` (or `rules.json`) and are ve
 ### What to hide
 
 - List/front-page **cards / teasers / headline rows** whose visible text matches
-- On article pages: if title or lead matches, hide main article content and show a short Norwegian placeholder (“Skjult av Kongsro”) with a link/button to reveal once
+- **Never** filter article pages (any non-homepage URL)
 
 ### MutationObserver
 

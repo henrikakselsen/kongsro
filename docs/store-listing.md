@@ -20,7 +20,7 @@ Kongsro demper «overkill»-dekning rundt kongelige hendelser (inkl. dødsfallsb
 - Skjuler artikkelkort og overskrifter som treffer lokale norske nøkkelord knyttet til kongehuset og sørgedekning.
 - Fungerer på VG, Dagbladet, Aftenposten, NRK, TV 2, Nettavisen, E24, ABC Nyheter og Dagsavisen.
 - Du kan skru filtrering av globalt eller per nettsted i popup-menyen.
-- På artikler kan du velge «Vis likevel» for den aktuelle siden.
+- Virker **kun på forsider** (ikke inne i enkeltartikler).
 
 **Viktig**
 - Filteret er **aggressivt** med vilje: det er bedre å skjule for mye enn for lite.

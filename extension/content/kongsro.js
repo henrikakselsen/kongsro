@@ -176,6 +176,12 @@
     return SITE_HOSTS.find((site) => host === site || host.endsWith(`.${site}`)) || null;
   }
 
+  /** Only site homepages — never article pages. */
+  function isFrontPage(pathname) {
+    const path = (pathname || "/").split("?")[0].replace(/\/+$/, "") || "/";
+    return path === "/" || path === "/index.html" || path === "/index.htm";
+  }
+
   function isFilteringActive(settings, hostname) {
     if (!settings || settings.enabled === false) return false;
     const key = siteKeyFromHost(hostname);
@@ -342,55 +348,14 @@
     hideRowNeighbours();
   }
 
-  function showArticlePlaceholder() {
-    if (document.getElementById("kongsro-article-placeholder")) return;
-    const path = location.pathname || "";
-    if (path === "/" || path.length < 8) return;
-    const titleText = (document.querySelector("h1")?.innerText || document.title || "").trim();
-    const lead = document.querySelector(
-      "[class*='lead'], [class*='ingress'], [class*='standfirst'], .article-lead"
-    );
-    const leadText = (lead?.innerText || "").trim().slice(0, 400);
-    if (!shouldHide(titleText) && !shouldHide(leadText)) return;
-
-    const targets = [];
-    const main =
-      document.querySelector("main, article, [role='main'], .article-body, .article__body") ||
-      null;
-    if (main && main !== document.body) targets.push(main);
-    else document.querySelectorAll("article, .article, [class*='article-body']").forEach((el) => targets.push(el));
-    targets.forEach((el) => {
-      el.classList.add(HIDDEN);
-      el.setAttribute(MARK, "article");
-    });
-
-    const box = document.createElement("div");
-    box.id = "kongsro-article-placeholder";
-    box.setAttribute("data-kongsro-ui", "1");
-    box.style.cssText =
-      "max-width:40rem;margin:2rem auto;padding:1.5rem;font-family:system-ui,sans-serif;border:1px solid #ccc;border-radius:8px;";
-    box.innerHTML =
-      "<p style='margin:0 0 1rem'><strong>Skjult av Kongsro</strong></p>" +
-      "<p style='margin:0 0 1rem;color:#444'>Denne artikkelen ser ut til å handle om kongelig mediestorm.</p>" +
-      "<button type='button' style='padding:0.5rem 1rem;cursor:pointer'>Vis likevel</button>";
-    box.querySelector("button")?.addEventListener("click", () => {
-      targets.forEach((el) => {
-        el.classList.remove(HIDDEN);
-        el.removeAttribute(MARK);
-      });
-      box.remove();
-    });
-    (document.querySelector("main, [role='main']") || document.body).prepend(box);
-  }
-
   let active = false;
   let observer = null;
   let debounceTimer = null;
 
   function runScan() {
     if (!active) return;
+    if (!isFrontPage(location.pathname)) return;
     scanAndHide();
-    showArticlePlaceholder();
   }
 
   function scheduleScan() {
@@ -411,8 +376,15 @@
 
   async function applySettings() {
     const settings = await loadSettings();
-    const shouldRun = isFilteringActive(settings, location.hostname);
-    console.debug("[Kongsro]", { shouldRun, host: location.hostname, settings });
+    const onFront = isFrontPage(location.pathname);
+    const shouldRun = isFilteringActive(settings, location.hostname) && onFront;
+    console.debug("[Kongsro]", {
+      shouldRun,
+      onFront,
+      host: location.hostname,
+      path: location.pathname,
+      settings,
+    });
     if (shouldRun) {
       active = true;
       runScan();
